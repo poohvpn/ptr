@@ -74,3 +74,34 @@ func TestString(t *testing.T) {
 		time.Date(2020, 2, 2, 2, 2, 2, 2, time.UTC),
 	).String())
 }
+
+func TestClone(t *testing.T) {
+	as := assert.New(t)
+	bPtr := NewBool(true)
+	bCloned := bPtr.Clone()
+	as.True(bPtr != bCloned)
+	as.Equal(bPtr.Value(), bCloned.Value())
+	*bCloned = false
+	as.NotEqual(bPtr.Value(), bCloned.Value())
+
+	tiPtr := NewTime(time.Time{})
+	tiCloned := tiPtr.Clone()
+	as.True(tiPtr != tiCloned)
+	as.Equal(tiPtr.Value(), tiCloned.Value())
+	*tiCloned = Time(time.Now())
+	as.NotEqual(tiPtr.Value(), tiCloned.Value())
+
+	iPtr := NewInt(1)
+	iCloned := iPtr.Clone()
+	as.True(iPtr != iCloned)
+	as.Equal(iPtr.Value(), iCloned.Value())
+	*iCloned = 0
+	as.NotEqual(iPtr.Value(), iCloned.Value())
+
+	sPtr := NewString("origin")
+	sCloned := sPtr.Clone()
+	as.True(sPtr != sCloned)
+	as.Equal(sPtr.Value(), sCloned.Value())
+	*sCloned = "clone"
+	as.NotEqual(sPtr.Value(), sCloned.Value())
+}
