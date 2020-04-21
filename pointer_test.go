@@ -73,6 +73,7 @@ func TestString(t *testing.T) {
 	as.Equal("2020-02-02T02:02:02.000000002Z", NewTime(
 		time.Date(2020, 2, 2, 2, 2, 2, 2, time.UTC),
 	).String())
+	as.Equal("str", NewString("str").String())
 }
 
 func TestClone(t *testing.T) {

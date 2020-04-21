@@ -275,3 +275,7 @@ func (p *String) Value() (res string) {
 func (p *String) Clone() *String {
 	return NewString(p.Value())
 }
+
+func (p *String) String() string {
+	return p.Value()
+}
